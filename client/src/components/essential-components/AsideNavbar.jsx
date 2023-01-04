@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 
 function AsideNavbar() {
     const [theme, setTheme] = useState('light');
@@ -36,7 +37,11 @@ function AsideNavbar() {
 
                 <div className="flex h-full flex-col justify-between">
                     <div className="flex flex-col gap-y-4">
-                        <div className="aside__options md:pl-2.5">
+                        <NavLink
+                            to="/"
+                            activeclassname="active"
+                            className="aside__options md:pl-2.5"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 viewBox="0 0 24 24"
@@ -50,8 +55,12 @@ function AsideNavbar() {
                                 />
                             </svg>
                             <h3 className="max-md:hidden">Overview</h3>
-                        </div>
-                        <div className="aside__options md:pl-2.5">
+                        </NavLink>
+                        <NavLink
+                            to="/coins"
+                            activeclassname="active"
+                            className="aside__options md:pl-2.5"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -68,8 +77,12 @@ function AsideNavbar() {
                             </svg>
 
                             <h3 className="max-md:hidden">Coins</h3>
-                        </div>
-                        <div className="aside__options md:pl-2.5">
+                        </NavLink>
+                        <NavLink
+                            to="/wallet"
+                            activeclassname="active"
+                            className="aside__options md:pl-2.5"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -85,8 +98,12 @@ function AsideNavbar() {
                                 />
                             </svg>
                             <h3 className="max-md:hidden">Wallet</h3>
-                        </div>
-                        <div className="aside__options md:pl-2.5">
+                        </NavLink>
+                        <NavLink
+                            to="/convert"
+                            activeclassname="active"
+                            className="aside__options md:pl-2.5"
+                        >
                             <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
@@ -102,7 +119,7 @@ function AsideNavbar() {
                                 />
                             </svg>
                             <h3 className="max-md:hidden">Convert</h3>
-                        </div>
+                        </NavLink>
                     </div>
 
                     <div className="flex h-60 flex-col justify-between">

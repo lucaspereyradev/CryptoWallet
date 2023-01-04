@@ -12,7 +12,10 @@
 
 @layer components {
     .aside__options {
-        @apply flex w-full cursor-pointer items-center gap-x-2 overflow-hidden overflow-ellipsis whitespace-nowrap rounded-lg py-2 transition-colors hover:bg-neutral-200 active:bg-black active:text-white dark:hover:bg-neutral-700/90 dark:active:bg-white dark:active:text-black;
+        @apply flex w-full cursor-pointer items-center gap-x-2 overflow-hidden overflow-ellipsis whitespace-nowrap rounded-lg py-2 transition-colors hover:bg-neutral-200  dark:hover:bg-neutral-700/90;
+    }
+    .active {
+        @apply bg-black text-white hover:bg-black dark:bg-white dark:text-black dark:hover:bg-white;
     }
 
     nav li {
