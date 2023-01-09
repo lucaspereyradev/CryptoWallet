@@ -3,6 +3,7 @@
     "private": true,
     "version": "0.0.0",
     "type": "module",
+    "proxy": "https://www.coingecko.com/es/api/documentation",
     "scripts": {
         "dev": "vite",
         "build": "vite build",
@@ -10,10 +11,12 @@
     },
     "dependencies": {
         "axios": "^1.2.1",
+        "cors": "^2.8.5",
         "daisyui": "^2.43.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
-        "react-router-dom": "^6.4.5"
+        "react-router-dom": "^6.4.5",
+        "react-select": "^5.7.0"
     },
     "devDependencies": {
         "@types/react": "^18.0.26",

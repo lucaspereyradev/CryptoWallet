@@ -1,14 +1,15 @@
 import HomeContent from '../home-components/HomeContent';
-import HomeHeader from '../home-components/HomeHeader';
 import HomeTableCoins from '../home-components/home-content-components/HomeTableCoins';
+import AppWrap from '../Wrapper/AppWrap';
+import Header from '../essential-components/Header';
 
 function HomePage() {
     return (
-        <div className="float-right h-screen w-[83%] px-4 lg:w-[86%] lg:px-10">
-            <HomeHeader />
+        <>
+            <Header title="Overview" />
             <HomeContent />
-        </div>
+        </>
     );
 }
 
-export default HomePage;
+export default AppWrap(HomePage);

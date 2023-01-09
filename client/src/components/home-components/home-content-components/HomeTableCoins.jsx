@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import CoinRow from '../coins/CoinRow';
+import CoinRow from '../../coins-components/coins/CoinRow';
 
 function HomeTableCoins() {
     const [topThreeCoins, setThreeCoins] = useState([]);
@@ -27,7 +27,7 @@ function HomeTableCoins() {
 
     const tableTitles = ['Coin', 'Price', 'Price Change', '24h Volume'];
     return (
-        <div className="relative max-h-screen overflow-x-auto sm:rounded-lg xl:-top-40">
+        <div className="relative max-h-screen overflow-x-auto rounded-lg xl:-top-40">
             <table className="w-full text-sm text-gray-500 dark:text-gray-400">
                 <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-[#0b0e11] dark:text-white">
                     <tr>

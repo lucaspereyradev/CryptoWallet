@@ -1,22 +1,11 @@
 import React, { useState } from 'react';
 
-function HomeHeader() {
+function Header({ title }) {
     const [user, setUser] = useState(null);
 
     return (
         <div className="flex h-[10%] w-full items-center justify-end">
-            {/* <div className="text-xl">
-                {user && (
-                    <>
-                        Welcome Back, <span className="font-bold">Lucas!</span>
-                    </>
-                )}
-                {!user && (
-                    <>
-                        I think you need to log in <span role="img">😊</span>
-                    </>
-                )}
-            </div> */}
+            <div className="mr-auto text-2xl font-bold">{title}</div>
             <div className="flex items-center gap-4">
                 <div className="flex items-center rounded-md bg-slate-100 py-2 pl-2 pr-2 dark:bg-neutral-700 1xsm:py-1 1xsm:pl-4">
                     <svg
@@ -94,4 +83,4 @@ function HomeHeader() {
     );
 }
 
-export default HomeHeader;
+export default Header;
