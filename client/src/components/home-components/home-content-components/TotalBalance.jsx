@@ -5,17 +5,19 @@ import axios from 'axios';
 import { useState } from 'react';
 
 const TotalBalance = ({ user }) => {
-    const [userDataDB, setUserDataDB] = useState([]);
+    const [userBalance, setUserBalance] = useState(null);
 
     useEffect(() => {
-        async function UserData() {
-            const data = await axios.get(`http://localhost:5050/users/${user.id}`);
-            setUserDataDB(data.data.data[0]);
+        if (user) {
+            async function UserData() {
+                const data = await axios.get(`http://localhost:5050/users/${user.id}`);
+                setUserBalance(data.data.data[0].balance);
+            }
+            UserData();
         }
-        UserData();
     }, []);
-    console.log(userDataDB);
 
+    console.log(userBalance);
     return (
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-1">
             {user ? (
@@ -27,7 +29,7 @@ const TotalBalance = ({ user }) => {
                                 Total Balance
                             </h4>
                             <h4 className="mx-auto text-lg font-bold 1xsm:text-2xl 2xl:text-2xl">
-                                ${userDataDB.balance}
+                                ${userBalance}
                             </h4>
                         </div>
                     </div>

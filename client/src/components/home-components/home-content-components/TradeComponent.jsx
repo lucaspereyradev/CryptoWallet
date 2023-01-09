@@ -2,18 +2,18 @@ import React, { useEffect, useState, useContext } from 'react';
 import axios from 'axios';
 import Select from 'react-select';
 import { User } from '../../../App';
+import TotalBalance from './TotalBalance';
 
 const TradeComponent = () => {
     const user = useContext(User);
 
     const url =
         'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false';
-    const [coinSelect, setCoinSelect] = useState([{}]);
+    const [coinSelect, setCoinSelect] = useState([]);
     const [coins, setCoins] = useState([]);
-    const [userData, setUserData] = useState([]);
+    const [userBalanceDB, setUserBalanceDB] = useState(null);
     const [amount, setAmount] = useState(0);
-    const [cantBought, setCantBought] = useState();
-    const [newUserBalance, setNewUserBalance] = useState();
+    const [cantBought, setCantBought] = useState(null);
 
     useEffect(() => {
         async function Coins() {
@@ -26,11 +26,12 @@ const TradeComponent = () => {
     useEffect(() => {
         async function UserData() {
             const data = await axios.get(`http://localhost:5050/users/${user.id}`);
-            setUserData(JSON.parse(data.data.data[0].user_coins));
+            setUserBalanceDB(data.data.data[0].balance);
         }
         UserData();
     }, []);
 
+    console.log(userBalanceDB);
     const handleSelectChange = (event) => {
         setCoinSelect(event.value);
     };
@@ -40,11 +41,11 @@ const TradeComponent = () => {
     }, [amount, coinSelect]);
 
     async function handleSubmit() {
-        setNewUserBalance(user.balance - amount);
         const send = await axios.put(`http://localhost:5050/users/${user.id}`, {
-            balance: newUserBalance,
+            balance: userBalanceDB - amount,
             user_coins: coinSelect,
         });
+        console.log(send);
     }
 
     return (
@@ -64,9 +65,10 @@ const TradeComponent = () => {
                 <div className="flex flex-col gap-2">
                     <label>Coin</label>
                     <Select
-                        className="rounded-lg py-2 px-4 focus:outline-none dark:bg-black"
+                        classNames="rounded-lg py-2 px-4 focus:outline-none dark:bg-black"
                         name="coin"
                         id="selectCoin"
+                        defaultValue={{ label: 'Select a coin...', value: '' }}
                         options={coins.map((coin) => ({ label: coin.name, value: coin }))}
                         onChange={handleSelectChange}
                     />

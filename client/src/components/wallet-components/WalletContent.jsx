@@ -1,11 +1,35 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
 import UserCoinsRow from './userCoinsRow.jsx/UserCoinsRow';
 import { User } from '../../App';
+import axios from 'axios';
 
 const WalletContent = () => {
     const user = useContext(User);
-    const [userCoins, setUserCoins] = useState(null);
 
+    const [userBalanceWallet, setUserBalanceWallet] = useState(null);
+    const [userCoins, setUserCoins] = useState([]);
+
+    useEffect(() => {
+        if (user) {
+            async function UserData() {
+                const data = await axios.get(`http://localhost:5050/users/${user.id}`);
+                setUserBalanceWallet(data.data.data[0].balance);
+            }
+            UserData();
+        }
+    }, []);
+
+    useEffect(() => {
+        if (user) {
+            async function UserCoinsData() {
+                const data = await axios.get(`http://localhost:5050/users/${user.id}`);
+                setUserCoins([JSON.parse(data.data.data[0].user_coins)]);
+            }
+            UserCoinsData();
+        }
+    }, []);
+
+    console.log(userCoins);
     const tableTitles = ['Coin', 'Balance', ''];
 
     return (
@@ -13,11 +37,7 @@ const WalletContent = () => {
             <div className="flex h-[8rem] w-full flex-col items-center justify-center gap-4 rounded-lg bg-neutral-100 dark:bg-neutral-700/30 sm:flex-row sm:justify-between sm:px-8 2xl:px-14">
                 <div className="h-full">
                     <h1 className="mt-8 text-lg">Balance</h1>
-                    <span className="text-2xl font-bold">${user.balance}</span>
-                </div>
-                <div className="hidden sm:flex sm:flex-col">
-                    <h4 className="text-neutral-300/80">Pnl/Today</h4>
-                    <span className="text-lg font-bold">$0.30+</span>
+                    <span className="text-2xl font-bold">${userBalanceWallet}</span>
                 </div>
             </div>
             <div className="h-[35rem] w-full rounded-lg">
@@ -63,7 +83,9 @@ const WalletContent = () => {
                             </thead>
                             <tbody>
                                 {userCoins ? (
-                                    <UserCoinsRow />
+                                    userCoins.map((coin) => {
+                                        return <UserCoinsRow userCoins={coin} bought={coin} />;
+                                    })
                                 ) : (
                                     <tr className="text-center">
                                         <td colSpan={3} className="py-8 pl-6">

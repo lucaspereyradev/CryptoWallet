@@ -10,7 +10,7 @@ const HomeContent = () => {
     const user = useContext(User);
 
     return (
-        <div className="mt-4 grid max-h-80 grid-cols-1 gap-4 xl:grid-cols-[800px,_1fr] 2xl:grid-cols-[1200px,_1fr]">
+        <div className="mt-4 grid max-h-80 grid-cols-1 gap-4 xl:grid-cols-[800px,_1fr] 2xl:grid-cols-[1000px,_1fr] 4xl:grid-cols-[1200px,_1fr]">
             <Banner />
             <TotalBalance user={user} />
             <HomeTableCoins />
