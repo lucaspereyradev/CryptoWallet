@@ -1,9 +1,7 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { User } from '../../App';
+import React, { useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
 
 function AsideNavbar() {
-    const user = useContext(User);
     const [theme, setTheme] = useState('light');
 
     useEffect(() => {
@@ -16,12 +14,6 @@ function AsideNavbar() {
 
     const handleThemeSwitch = () => {
         setTheme(theme === 'dark' ? 'light' : 'dark');
-    };
-
-    const handleLogout = () => {
-        window.localStorage.removeItem('loggedInApp');
-        setUser(null);
-        window.location.href = '/';
     };
 
     return (
@@ -179,48 +171,23 @@ function AsideNavbar() {
                                 </label>
                             </div>
 
-                            {user && (
-                                <NavLink
-                                    to="/login"
-                                    className="aside__options md:pl-2.5"
-                                    onClick={handleLogout}
+                            <NavLink to="/login" className="aside__options md:pl-2.5">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    strokeWidth={1.5}
+                                    stroke="currentColor"
+                                    className="h-5 w-5 max-md:mx-auto"
                                 >
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth={1.5}
-                                        stroke="currentColor"
-                                        className="h-5 w-5 max-md:mx-auto"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
-                                        />
-                                    </svg>
-                                    <h3 className="max-md:hidden">Log Out</h3>
-                                </NavLink>
-                            )}
-                            {!user && (
-                                <NavLink to="/login" className="aside__options md:pl-2.5">
-                                    <svg
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        fill="none"
-                                        viewBox="0 0 24 24"
-                                        strokeWidth={1.5}
-                                        stroke="currentColor"
-                                        className="h-5 w-5 max-md:mx-auto"
-                                    >
-                                        <path
-                                            strokeLinecap="round"
-                                            strokeLinejoin="round"
-                                            d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15m3 0l3-3m0 0l-3-3m3 3H9"
-                                        />
-                                    </svg>
-                                    <h3 className="max-md:hidden">Sign in</h3>
-                                </NavLink>
-                            )}
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        d="M15.75 9V5.25A2.25 2.25 0 0013.5 3h-6a2.25 2.25 0 00-2.25 2.25v13.5A2.25 2.25 0 007.5 21h6a2.25 2.25 0 002.25-2.25V15M12 9l-3 3m0 0l3 3m-3-3h12.75"
+                                    />
+                                </svg>
+                                <h3 className="max-md:hidden">Log Out</h3>
+                            </NavLink>
                         </div>
                     </div>
                 </div>

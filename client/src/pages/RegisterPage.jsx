@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import AppWrap from '../Wrapper/AppWrap';
+import { AppWrap } from '../components';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 

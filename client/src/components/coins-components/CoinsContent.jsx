@@ -1,8 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import CoinRow from './coins/CoinRow';
+import { CoinRow } from '../';
 
-const CoinsContent = ({ search }) => {
+const CoinsContent = () => {
     const [coins, setCoins] = useState([]);
     const [page, setPage] = useState(1);
     let coinsFiltered = [];

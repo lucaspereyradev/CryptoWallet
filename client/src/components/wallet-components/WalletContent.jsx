@@ -1,35 +1,6 @@
-import React, { useState, useContext, useEffect } from 'react';
-import UserCoinsRow from './userCoinsRow.jsx/UserCoinsRow';
-import { User } from '../../App';
-import axios from 'axios';
+import React from 'react';
 
 const WalletContent = () => {
-    const user = useContext(User);
-
-    const [userBalanceWallet, setUserBalanceWallet] = useState(null);
-    const [userCoins, setUserCoins] = useState([]);
-
-    useEffect(() => {
-        if (user) {
-            async function UserData() {
-                const data = await axios.get(`http://localhost:5050/users/${user.id}`);
-                setUserBalanceWallet(data.data.data[0].balance);
-            }
-            UserData();
-        }
-    }, []);
-
-    useEffect(() => {
-        if (user) {
-            async function UserCoinsData() {
-                const data = await axios.get(`http://localhost:5050/users/${user.id}`);
-                setUserCoins([JSON.parse(data.data.data[0].user_coins)]);
-            }
-            UserCoinsData();
-        }
-    }, []);
-
-    console.log(userCoins);
     const tableTitles = ['Coin', 'Balance', ''];
 
     return (
@@ -72,27 +43,17 @@ const WalletContent = () => {
                         <table className="w-full table-fixed text-sm text-gray-500 dark:text-gray-400">
                             <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-[#0b0e11] dark:text-white">
                                 <tr>
-                                    {tableTitles.map((titles, index) => {
-                                        return (
-                                            <td className="py-3 px-6" key={index}>
-                                                {titles}
-                                            </td>
-                                        );
-                                    })}
+                                    <td className="py-3 px-6" key={index}>
+                                        {titles}
+                                    </td>
                                 </tr>
                             </thead>
                             <tbody>
-                                {userCoins ? (
-                                    userCoins.map((coin) => {
-                                        return <UserCoinsRow userCoins={coin} bought={coin} />;
-                                    })
-                                ) : (
-                                    <tr className="text-center">
-                                        <td colSpan={3} className="py-8 pl-6">
-                                            You don't have coins.
-                                        </td>
-                                    </tr>
-                                )}
+                                <tr className="text-center">
+                                    <td colSpan={3} className="py-8 pl-6">
+                                        You don't have coins.
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
                     </div>

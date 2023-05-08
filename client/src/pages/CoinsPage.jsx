@@ -1,7 +1,5 @@
 import React from 'react';
-import AppWrap from '../Wrapper/AppWrap';
-import CoinsContent from '../coins-components/CoinsContent';
-import Header from '../essential-components/Header';
+import { Header, CoinsContent, AppWrap } from '../components';
 
 const CoinsPage = () => {
     return (

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import CoinsContent from '../coins-components/CoinsContent';
 
 function Header({ title }) {

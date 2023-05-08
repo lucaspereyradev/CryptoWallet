@@ -1,7 +1,7 @@
 import React from 'react';
-import Header from '../essential-components/Header';
-import WalletContent from '../wallet-components/WalletContent';
-import AppWrap from '../Wrapper/AppWrap';
+import Header from '../components/essential-components/Header';
+import WalletContent from '../components/wallet-components/WalletContent';
+import AppWrap from '../components/Wrapper/AppWrap';
 
 const WalletPage = () => {
     return (

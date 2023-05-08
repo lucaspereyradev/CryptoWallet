@@ -1,45 +1,10 @@
-import React, { useEffect, useState } from 'react';
-import AppWrap from '../Wrapper/AppWrap';
+import React, { useState } from 'react';
+import { AppWrap } from '../components';
 import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 const LoginPage = () => {
-    const url = 'http://localhost:5050/users/login';
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [user, setUser] = useState(null);
-    const [errorMessage, setErrorMessage] = useState(null);
-
-    useEffect(() => {
-        const loggedUserJSON = window.localStorage.getItem('loggedInApp');
-        if (loggedUserJSON) {
-            const user = JSON.parse(loggedUserJSON);
-            setUser(user);
-        }
-    }, []);
-
-    const submitLoginUser = async (e) => {
-        e.preventDefault();
-        try {
-            var bodyFormData = {
-                email: email,
-                password: password,
-            };
-
-            const resp = await axios.post(url, bodyFormData);
-
-            setEmail('');
-            setPassword('');
-
-            window.localStorage.setItem('loggedInApp', JSON.stringify(resp.data));
-            window.location.href = '/';
-        } catch (error) {
-            setErrorMessage('Credentials error');
-            setTimeout(() => {
-                setErrorMessage(null);
-            }, 7000);
-        }
-    };
 
     return (
         <div className="flex h-full flex-col items-center justify-center">
