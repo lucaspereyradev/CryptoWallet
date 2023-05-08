@@ -24,7 +24,9 @@ const TotalBalance = ({ user }) => {
                 <>
                     <div>
                         <div className="relative hidden h-80 w-full flex-col items-center justify-center gap-4 overflow-hidden rounded-md bg-neutral-100 dark:bg-neutral-700/30 md:flex">
-                            <div className="absolute bottom-44 h-24 w-24 rounded-[50%] border-4 border-solid border-primary 1xsm:bottom-40 1xsm:h-32 1xsm:w-32"></div>
+                            <div className="absolute bottom-44 h-24 w-24 rounded-[50%] border-4 border-solid border-primary object-cover 1xsm:bottom-40 1xsm:h-32 1xsm:w-32">
+                                <img src="avatar.png" className="h-full w-full" alt="" />
+                            </div>
                             <h4 className="mx-auto mt-24 text-sm 1xsm:mt-32 1xsm:text-lg 2xl:text-xl">
                                 Total Balance
                             </h4>
@@ -60,7 +62,9 @@ const TotalBalance = ({ user }) => {
                     </>
                 ) : (
                     <>
-                        <TradeComponent />
+                        <div className="h-full w-full blur-sm">
+                            <TradeComponent />
+                        </div>
                         <div className="absolute flex h-full w-full flex-col items-center justify-center gap-y-4">
                             <h2 className="text-xl">To buy or sell you need</h2>
                             <Link

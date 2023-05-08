@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import CoinRow from './coins/CoinRow';
 
-const CoinsContent = () => {
+const CoinsContent = ({ search }) => {
     const [coins, setCoins] = useState([]);
     const [page, setPage] = useState(1);
+    let coinsFiltered = [];
 
     async function CoinsAxios() {
         const config = {
-            mode: 'no-cors',
+            mode: 'cors',
             headers: {
                 'Access-Control-Allow-Origin': '*',
                 'Content-Type': 'application/json',
@@ -25,6 +26,12 @@ const CoinsContent = () => {
     useEffect(() => {
         CoinsAxios();
     }, [page]);
+
+    // if (search) {
+    //     coinsFiltered = coins.filter((e) => {
+    //         e.name.toLowerCase().includes(search);
+    //     });
+    // }
 
     const tableTitles = ['Coin', 'Price', 'Price Change', '24h Volume'];
 
@@ -56,6 +63,13 @@ const CoinsContent = () => {
                         </tr>
                     </thead>
                     <tbody>
+                        {/* {!coinsFiltered
+                            ? coins.map((coin, index) => {
+                                  return <CoinRow coin={coin} key={index} index={index + 1} />;
+                              })
+                            : coinsFiltered.map((coin, index) => {
+                                  return <CoinRow coin={coin} key={index} index={index + 1} />;
+                              })} */}
                         {coins.map((coin, index) => {
                             return <CoinRow coin={coin} key={index} index={index + 1} />;
                         })}

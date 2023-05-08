@@ -58,7 +58,7 @@ const LoginPage = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                     <label htmlFor="password" className="text-sm">
-                        Passoword
+                        Password
                     </label>
                     <input
                         type="password"

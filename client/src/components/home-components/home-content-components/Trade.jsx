@@ -9,7 +9,9 @@ const Trade = ({ user }) => {
                 <TradeComponent />
             ) : (
                 <>
-                    <TradeComponent />
+                    <div className="h-full w-full blur-sm">
+                        <TradeComponent />
+                    </div>
                     <div className="absolute flex h-full w-full flex-col items-center justify-center gap-y-4">
                         <h2 className="text-xl">To buy or sell you need</h2>
                         <Link

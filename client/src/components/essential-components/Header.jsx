@@ -1,32 +1,41 @@
 import React, { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
+import CoinsContent from '../coins-components/CoinsContent';
 
 function Header({ title }) {
-    const [user, setUser] = useState(null);
+    const [search, setSearch] = useState('');
+
+    <CoinsContent search={search} />;
 
     return (
         <div className="flex h-[10%] w-full items-center justify-end">
             <div className="mr-auto text-2xl font-bold">{title}</div>
             <div className="flex items-center gap-4">
                 <div className="flex items-center rounded-md bg-slate-100 py-2 pl-2 pr-2 dark:bg-neutral-700 1xsm:py-1 1xsm:pl-4">
-                    <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        strokeWidth={1.5}
-                        stroke="currentColor"
-                        className="flex h-5 w-5 min-w-[1.25rem] items-center justify-center"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                    <Link to="/coins">
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                            strokeWidth={1.5}
+                            stroke="currentColor"
+                            className="flex h-5 w-5 min-w-[1.25rem] items-center justify-center"
+                        >
+                            <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"
+                            />
+                        </svg>
+                    </Link>
+                    <Link to="/coins">
+                        <input
+                            type="search"
+                            className="ml hidden rounded-md bg-slate-100 py-2 pl-4 focus:outline-0 dark:bg-neutral-700 max-1xsm:w-[200px] 1xsm:flex"
+                            placeholder="Search coins"
+                            onChange={(e) => setSearch(e.target.value.toLowerCase())}
                         />
-                    </svg>
-                    <input
-                        type="search"
-                        className="ml hidden rounded-md bg-slate-100 py-2 pl-4 focus:outline-0 dark:bg-neutral-700 max-1xsm:w-[200px] 1xsm:flex"
-                        placeholder="Search coins"
-                    />
+                    </Link>
                 </div>
                 <div className="flex gap-4">
                     <button>
